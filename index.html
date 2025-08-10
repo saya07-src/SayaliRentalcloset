@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sayali Rental Closet — Rent, Slay, Return, Repeat</title>
+  <meta name="description" content="Sayali Rental Closet - Rent bridal lehengas, sarees, gowns, maternity & kids outfits, and jewelry. Pune based designer rental closet."/>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Theme color: teal + gold -->
+  <style>
+    :root{
+      --teal:#0f6b6b;      /* main teal */
+      --teal-dark:#0b514f;
+      --gold:#D4AF37;      /* accent gold */
+      --ivory:#FAF6F0;     /* background */
+      --muted:#666;
+      --max-width:1100px;
+      --radius:12px;
+    }
+    /* Basic reset */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--ivory);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* Page container */
+    .site{max-width:var(--max-width);margin:0 auto;padding:20px}
+
+    /* Header / Logo */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:56px;object-fit:contain;border-radius:10px;background:white;padding:6px}
+    .brand h1{font-family:'Playfair Display',serif;margin:0;font-size:20px;color:var(--teal-dark);letter-spacing:0.6px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--teal-dark);text-decoration:none;font-weight:600;padding:8px;border-radius:8px;font-size:14px}
+    nav a:hover{background:rgba(15,107,107,0.08)}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      margin:18px 0;
+      min-height:56vh;
+      display:flex;
+      align-items:center;
+      color:white;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;inset:0;background:linear-gradient(180deg, rgba(15,107,107,0.45), rgba(0,0,0,0.35));
+      z-index:1;
+    }
+    /* NOTE: hero background image file name -> hero.jpg (place in same folder) */
+    .hero-bg{position:absolute;inset:0;background-image:url('hero.jpg');background-size:cover;background-position:center;filter:brightness(0.95);z-index:0}
+    .hero-inner{position:relative;z-index:2;padding:36px;max-width:var(--max-width);margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .hero h2{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,48px);margin:0;color:#fff;text-shadow:0 6px 30px rgba(0,0,0,0.3)}
+    .hero p.lead{color:#fff9;max-width:760px;font-size:16px;margin-top:6px}
+    .hero-ctas{display:flex;gap:12px;margin-top:16px}
+    .btn{
+      padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700;font-size:15px;text-decoration:none;
+      display:inline-flex;align-items:center;gap:10px;
+      box-shadow:0 6px 16px rgba(0,0,0,0.12);
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--teal),var(--teal-dark));color:white}
+    .btn-ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.15)}
+
+    /* Sections */
+    section{padding:34px 0;border-bottom:1px solid rgba(0,0,0,0.03)}
+    section h3{font-family:'Playfair Display',serif;color:var(--teal-dark);margin-bottom:10px}
+    .intro{max-width:920px;margin:0 auto;color:var(--muted)}
+
+    /* Services grid */
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .service{background:white;padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(12,12,12,0.04);display:flex;gap:12px;align-items:center}
+    .service .icon{width:56px;height:56px;border-radius:10px;background:linear-gradient(180deg,var(--gold),#c79b2a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px}
+    .service h4{margin:0;font-size:16px;color:var(--teal-dark)}
+    .service p{margin:2px 0 0 0;color:var(--muted);font-size:13px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .gallery img{width:100%;height:250px;object-fit:cover;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.06);transition:transform .35s ease}
+    .gallery img:hover{transform:scale(1.03);cursor:pointer}
+
+    /* FAQ / Terms area */
+    .lang-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+    .tab{padding:8px 14px;border-radius:20px;background:transparent;border:1px solid rgba(15,107,107,0.08);cursor:pointer;color:var(--teal-dark);font-weight:600}
+    .tab.active{background:linear-gradient(90deg,var(--teal),var(--teal-dark));color:white;box-shadow:0 6px 18px rgba(12,58,58,0.12)}
+    .accordion{max-width:1000px;margin:12px auto;border-radius:12px;overflow:hidden}
+    .acc-item{background:white;border-bottom:1px solid rgba(0,0,0,0.04)}
+    .acc-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;cursor:pointer}
+    .acc-head h4{margin:0;font-size:15px;color:var(--teal-dark)}
+    .acc-body{padding:0 18px 18px 18px;color:var(--muted);font-size:14px;display:none;line-height:1.6}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 320px;gap:20px;align-items:start}
+    .contact-card{background:white;padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.04)}
+    .contact-card p{margin:8px 0;color:var(--muted)}
+    .contact-actions{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+    .contact-actions a{display:inline-flex;align-items:center;gap:10px;padding:10px;border-radius:10px;text-decoration:none;font-weight:700}
+    .whatsapp{background:linear-gradient(90deg,#25D366,#128C7E);color:white}
+    .call{background:linear-gradient(90deg,#ff8a65,#ff5722);color:white}
+    .insta{background:linear-gradient(90deg,#f58529,#dd2a7b);color:white}
+
+    /* Footer */
+    footer{padding:20px;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .topbar{padding:8px 0;gap:8px}
+      .contact-grid{grid-template-columns:1fr}
+      .hero{min-height:48vh}
+      .gallery img{height:180px}
+    }
+
+    /* small polish animations */
+    .fade-in{opacity:0;transform:translateY(12px);transition:all .6s ease-out}
+    .fade-in.show{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <div class="site">
+    <!-- TOP / LOGO -->
+    <div class="topbar fade-in" id="topbar">
+      <div class="brand">
+        <!-- logo file name: logo.png (place in same folder) -->
+        <img src="logo.png" alt="Sayali Rental Closet logo" id="site-logo">
+        <div>
+          <h1>Sayali Rental Closet</h1>
+          <p>Rent • Slay • Return • Repeat</p>
+        </div>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#collection">Collection</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero fade-in" id="home" role="banner" aria-label="Hero">
+      <div class="hero-bg" aria-hidden></div>
+      <div class="hero-inner">
+        <h2>Wear the story — rent designer Indian wear & jewelry</h2>
+        <p class="lead">Bridal lehengas, designer sarees (Nauvari, silk), gowns, maternity & kids outfits, and curated jewelry — doorstep delivery & try-on available.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/917498946504" target="_blank">Book on WhatsApp</a>
+          <a class="btn btn-ghost" href="#collection">Browse Collection</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ABOUT / COLLECTION -->
+    <section id="collection" class="fade-in">
+      <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap;justify-content:space-between">
+        <div style="flex:1;min-width:260px">
+          <h3>About Sayali Rental Closet</h3>
+          <p class="intro">Sayali Rental Closet is a fashion rental service offering a wide range of bridal, non-bridal, maternity, festive, kids, and designer wear on rent for women. Our goal is to help you <strong>Rent, Slay, Return, Repeat</strong> without the high cost of ownership.</p>
+
+          <div class="services" aria-hidden>
+            <div class="service"><div class="icon">B</div><div><h4>Bridal Lehengas</h4><p>Heavywork & designer lehengas for weddings and ceremonies.</p></div></div>
+            <div class="service"><div class="icon">S</div><div><h4>Sarees</h4><p>Kanjivaram, Banarasi, Nuuvari & designer silks.</p></div></div>
+            <div class="service"><div class="icon">G</div><div><h4>Gowns & Dresses</h4><p>Pre-wedding, maternity, and reception gowns.</p></div></div>
+            <div class="service"><div class="icon">M</div><div><h4>Maternity</h4><p>Photoshoot-friendly and comfortable outfits.</p></div></div>
+            <div class="service"><div class="icon">K</div><div><h4>Kids</h4><p>Festive & photoshoot outfits for little ones.</p></div></div>
+            <div class="service"><div class="icon">J</div><div><h4>Jewelry</h4><p>Statement necklaces & sets on select packages.</p></div></div>
+          </div>
+        </div>
+
+        <!-- about image -->
+        <div style="width:360px;max-width:42%;min-width:220px">
+          <!-- about.jpg file name: place your about photo with this name in same folder -->
+          <img src="about.jpg" alt="Sayali Rental Closet shop" style="width:100%;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.12)">
+        </div>
+      </div>
+
+      <!-- small gallery (place gallery1.jpg..gallery4.jpg in folder) -->
+      <div style="margin-top:22px">
+        <h3 style="margin-bottom:10px">Featured Pieces</h3>
+        <div class="gallery" role="list">
+          <img src="gallery1.jpg" alt="Featured 1" loading="lazy">
+          <img src="gallery2.jpg" alt="Featured 2" loading="lazy">
+          <img src="gallery3.jpg" alt="Featured 3" loading="lazy">
+          <img src="gallery4.jpg" alt="Featured 4" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ & TERMS -->
+    <section id="faq" class="fade-in">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <h3>FAQ & Terms</h3>
+        <div class="lang-tabs" role="tablist" aria-label="Language tabs">
+          <button class="tab active" data-lang="en">English</button>
+          <button class="tab" data-lang="mr">मराठी</button>
+        </div>
+      </div>
+
+      <!-- English -->
+      <div id="lang-en" class="lang-panel">
+        <div class="accordion" aria-live="polite">
+          <!-- FAQ Items English -->
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: What is Sayali Rental Closet?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Sayali Rental Closet is a fashion rental service offering a wide range of bridal, non-bridal, maternity, festive, and designer wear on rent for women. Our goal is to help you Rent, Slay, Return, Repeat without the high cost of ownership.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: What items are available for rent?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">We offer: Bridal lehengas; Sarees (including Nauvari, Designer, Silk); Gowns & dresses; Maternity photoshoot outfits; Kids outfits; Jewelry (on select packages).</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: What is the rental period?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Standard rental duration is 3 days. Extended rental can be arranged on request with extra charges.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: Do you provide trial or fitting before booking?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Yes! You can book a free trial appointment at our shop for fittings and to try different outfits before finalizing.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: Do you alter the dress to fit?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">We offer temporary alterations (minor size adjustments) to make the dress fit perfectly. Major size changes are not provided.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: What are the rental charges?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Charges vary depending on the outfit, design, and duration. Please contact us or visit the shop for a price list or custom quotation.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: Is a security deposit required?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Yes. A refundable security deposit is collected at the time of booking. This is returned after outfit inspection upon return.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: How do I return the outfit?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Outfits should be returned in the same condition within the agreed rental duration. Late return will incur extra charges.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: What happens if I damage the dress?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Minor damages (e.g., loose thread, stains) may incur repair charges. Major damages or unreturnable items may require full payment of the product value.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>Q: Can I cancel my booking?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Cancellations made: 48 hours before pickup: Full refund. Within 48 hours: 50% refund. On the pickup day or later: No refund.</div>
+          </div>
+
+          <!-- Terms Header -->
+          <div style="margin-top:14px;padding:10px;font-weight:700;color:var(--teal-dark)">Terms & Conditions (English)</div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>1. Booking & Payment</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Full rental payment and security deposit are required in advance to confirm your booking. Payments can be made via cash, UPI, or bank transfer.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>2. Use & Care</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Outfits must be used with care. Avoid harsh makeup stains, burns, and cuts. Do not attempt to wash or dry clean rented clothes.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>3. Returns & Damages</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Return must be made on or before the return date. Any damage will be assessed, and repair or replacement cost will be deducted from the deposit. If the dress is permanently damaged or lost, full market value will be charged.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>4. Fitting & Alterations</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Only minor fitting changes are offered and must be discussed during trial. Clothes must be returned without any alterations done by the renter.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>5. Late Returns</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">₹___ per day will be charged for each day of late return. If not returned within 5 days without communication, it will be treated as lost and full value will be claimed.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>6. Hygiene & Maintenance</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">All outfits are professionally cleaned after each use. You are not allowed to wash or alter cleaning in any way.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>7. Refunds & Cancellations</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Refunds are processed as per cancellation policy stated in FAQ. Refunds may take 3–5 working days.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>8. Photography & Branding</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">We may request customer photos (with your consent) for marketing or social media. Tag us in your beautiful pictures!</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>9. Legal</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">Any disputes will be subject to jurisdiction under Pune, Maharashtra. Sayali Rental Closet reserves the right to refuse service to anyone found misusing the service.</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Marathi -->
+      <div id="lang-mr" class="lang-panel" style="display:none">
+        <div class="accordion" aria-live="polite">
+          <!-- Marathi FAQ Items -->
+          <div class="acc-item">
+            <div class="acc-head"><h4>प्र: सायली रेंटल क्लोसेट म्हणजे काय?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">उ: सायली रेंटल क्लोसेट ही महिलांसाठी वधू-विवाह, पार्टी, मॅटर्निटी, उत्सव आणि डिझायनर कपडे भाड्याने देणारी सेवा आहे. आमचा उद्देश आहे – भाड्याने घ्या, झळका, परत द्या, पुन्हा घ्या!</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>प्र: कशा प्रकारचे कपडे भाड्याने मिळतात?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">उ: आमच्याकडे ब्राइडल लेहेंगा, साड्या (नऊवारी, डिझायनर, रेशीम), गाऊन व ड्रेस, मॅटर्निटी फोटोशूट आउटफिट्स, मुलांचे कपडे, व निवडक पॅकेजमध्ये ज्वेलरी उपलब्ध आहे.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>प्र: भाड्याचा कालावधी किती असतो?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">उ: सामान्य भाडे कालावधी ३ दिवस आहे. जास्त कालावधीसाठी आगाऊ कळवून अतिरिक्त शुल्क आकारले जाईल.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>प्र: बुकिंगपूर्वी ट्रायल/फिटिंग मिळते का?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">उ: होय! तुम्ही दुकानात मोफत ट्रायल अपॉइंटमेंट घेऊन कपडे घालून पाहू शकता.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>प्र: कपडे परत कसे द्यायचे?</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">उ: निश्चित केलेल्या तारखेला आणि त्याच स्थितीत कपडे परत द्यायचे आहेत. उशिरा परत केल्यास अतिरिक्त शुल्क आकारले जाईल.</div>
+          </div>
+
+          <!-- Marathi Terms header -->
+          <div style="margin-top:14px;padding:10px;font-weight:700;color:var(--teal-dark)">नियम व अटी (मराठी)</div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>बुकिंग व पेमेंट</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">बुकिंगची खात्री करण्यासाठी पूर्ण भाडे व सिक्युरिटी डिपॉझिट आगाऊ भरावे. पेमेंट रोख, UPI किंवा बँक ट्रान्स्फरने करता येईल.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>वापर व काळजी</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">कपड्यांचा वापर काळजीपूर्वक करावा. जड मेकअपचे डाग, जळणे, कापणे टाळावे. कपडे स्वतः धुणे किंवा ड्राय क्लिनिंग करणे कडक मनाई आहे.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>परतावा व नुकसान</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">कपडे वेळेत परत करणे आवश्यक. नुकसान झाल्यास दुरुस्ती/बदल खर्च डिपॉझिटमधून वजा केला जाईल. कपडे कायमचे खराब/हरवले तर पूर्ण बाजारभाव आकारला जाईल.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>उशिरा परत केल्यास</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">प्रत्येक उशिराच्या दिवशी ₹___ आकारले जातील. ५ दिवसांत कपडे न परतवल्यास ते हरवले असे समजले जाईल आणि पूर्ण किंमत आकारली जाईल.</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>फोटो व ब्रँडिंग</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">ग्राहकाच्या परवानगीने फोटो मार्केटिंगसाठी वापरले जाऊ शकतात. तुमचे फोटो आमच्यासोबत टॅग करा!</div>
+          </div>
+
+          <div class="acc-item">
+            <div class="acc-head"><h4>कायदेशीर</h4><div class="acc-toggle">+</div></div>
+            <div class="acc-body">सर्व वाद पुणे, महाराष्ट्र न्यायक्षेत्रांतर्गत सोडवले जातील. सायली रेंटल क्लोसेटला चुकीच्या वापरासाठी सेवा नाकारण्याचा अधिकार आहे.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+      <h3>Contact & Book</h3>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-card">
+            <h4>Get in touch</h4>
+            <p><strong>WhatsApp / Phone:</strong> <a href="tel:+917498946504">+91 74989 46504</a></p>
+            <p><strong>Instagram:</strong> <a href="https://www.instagram.com/sayali_rental_closet/" target="_blank">@sayali_rental_closet</a></p>
+            <p><strong>Location:</strong> Pune, Maharashtra — (replace with full address)</p>
+
+            <div class="contact-actions" aria-hidden>
+              <a class="whatsapp" href="https://wa.me/917498946504?text=Hi%20Sayali%20Rental%20Closet%2C%20I%20want%20to%20book%20an%20outfit." target="_blank">Message on WhatsApp</a>
+              <a class="call" href="tel:+917498946504">Call Now</a>
+              <a class="insta" href="https://www.instagram.com/sayali_rental_closet/" target="_blank">Open Instagram</a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-card">
+            <h4>Enquiry form</h4>
+            <p style="color:var(--muted)">(If you prefer form enquiries, copy this HTML to your host or use your email/Sheet backing.)</p>
+            <form id="enquireForm" onsubmit="submitEnquiry(event)">
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <input type="text" id="name" placeholder="Full name" required style="flex:1;padding:10px;border-radius:8px;border:1px solid #eee">
+                <input type="tel" id="phone" placeholder="Phone / WhatsApp" required style="flex:1;padding:10px;border-radius:8px;border:1px solid #eee">
+              </div>
+              <div style="margin-top:8px">
+                <input type="email" id="email" placeholder="Email (optional)" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee">
+              </div>
+              <div style="margin-top:8px">
+                <select id="service" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee">
+                  <option>Service required — Rental / Try-on / Styling</option>
+                  <option>Rental</option><option>Try-on</option><option>Styling</option>
+                </select>
+              </div>
+              <div style="margin-top:8px;display:flex;gap:8px">
+                <input id="date" placeholder="Event date (dd-mm-yyyy)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eee">
+                <button type="submit" class="btn btn-primary" style="padding:10px 14px;border-radius:8px">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="max-width:var(--max-width);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>© 2025 Sayali Rental Closet • All rights reserved</div>
+        <div style="color:var(--muted)">Designed for small boutiques • Replace placeholder images before publishing</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // helper: show fade-in on scroll
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add('show');
+        });
+      }, {threshold:0.08});
+      document.querySelectorAll('.fade-in').forEach(el=>io.observe(el));
+    })();
+
+    // language tabs
+    document.querySelectorAll('.tab').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.getAttribute('data-lang');
+        document.getElementById('lang-en').style.display = lang === 'en' ? '' : 'none';
+        document.getElementById('lang-mr').style.display = lang === 'mr' ? '' : 'none';
+      });
+    });
+
+    // accordion: allow multiple open at once
+    document.addEventListener('click', function(e){
+      const head = e.target.closest('.acc-head');
+      if(!head) return;
+      const body = head.nextElementSibling;
+      if(!body) return;
+      // toggle
+      if(body.style.display === 'block'){
+        body.style.display = 'none';
+        head.querySelector('.acc-toggle').textContent = '+';
+      } else {
+        body.style.display = 'block';
+        head.querySelector('.acc-toggle').textContent = '-';
+      }
+    });
+
+    // basic enquiry form: opens whatsapp prefilled message
+    function submitEnquiry(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim().replace(/\D/g,'');
+      const email = document.getElementById('email').value.trim();
+      const service = document.getElementById('service').value;
+      const date = document.getElementById('date').value.trim();
+      const text = `Hi Sayali, I am ${encodeURIComponent(name)}. Phone: ${encodeURIComponent(phone)}. Service: ${encodeURIComponent(service)}. Date: ${encodeURIComponent(date)}. Email: ${encodeURIComponent(email)}.`;
+      // open whatsapp for quick contact
+      window.open('https://wa.me/91' + phone + '?text=' + text, '_blank');
+    }
+
+    // replace empty gallery images with placeholders if missing
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.onerror = ()=> img.src = 'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"600\" height=\"400\"><rect width=\"100%\" height=\"100%\" fill=\"%23f3f3f3\"/><text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" fill=\"%23999\" font-family=\"Arial\" font-size=\"18\">Replace '+(img.getAttribute('alt')||'image')+'</text></svg>';
+    });
+
+    // accessibility: allow Enter key to toggle accordion headers
+    document.querySelectorAll('.acc-head').forEach(h=>{
+      h.tabIndex = 0;
+      h.addEventListener('keydown', (ev)=>{
+        if(ev.key === 'Enter' || ev.key === ' '){
+          ev.preventDefault();
+          h.click();
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
